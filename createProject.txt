@@ -1,0 +1,6 @@
+Spring boot devtools (mục 1)
+Spring Web  (mục 2)
+Spring Security (mục 3)
+Thymelead (mục 4)
+Maria DB (Trong mục SQL)
+Spring JPA (trong mục SQL)

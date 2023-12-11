@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<style>
+    div.inline {
+        color: black;
+        float: none;
+        padding: 5px 5px;
+        display: inline-block;
+    }
+    div.inline a.active {
+        background-color: #FBD603;
+        border:1px solid darkred;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List Product</title>
+</head>
+
+<body>
+<h1>List Product</h1>
+<table>
+    <THEAD>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>DESCRIPTION</th>
+        <th>UNIT</th>
+        <th>STATUS</th>
+        <th colspan="2">
+            <a href="/admin/products/add">New Product</a>
+        </th>
+    </THEAD>
+    <tbody>
+    <tr th:each="product, iStat : ${productPage.content}">
+
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.unit}"></td>
+        <td th:text="${product.status}"></td>
+        <td><a th:href="@{/admin/products/edit/{id}(id=${product.id})}">Edit</a></td>
+        <td><a th:href="@{/admin/products/delete/{id}(id=${product.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<div class="inline" th:if="${productPage.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/admin/products(size=${productPage.size}, page=${pageNumber})}"
+       th:text="${pageNumber}"
+       th:class="${pageNumber==productPage.number + 1} ? active"></a>
+</div>
+</body>
+</html>
